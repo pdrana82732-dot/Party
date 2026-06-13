@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bangalore Exit Party 2026 🎉</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJnIiB4MT0iMCUiIHkxPSIwJSIgeDI9IjEwMCUiIHkyPSIxMDAlIj4KICAgICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzdjM2FlZCIvPgogICAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNkYjI3NzciLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDxyZWN0IHdpZHRoPSI2NCIgaGVpZ2h0PSI2NCIgcng9IjE0IiBmaWxsPSJ1cmwoI2JnKSIvPgogIDxyZWN0IHg9IjEwIiB5PSIzNCIgd2lkdGg9IjI4IiBoZWlnaHQ9IjEzIiByeD0iNCIgZmlsbD0iI2Y1OWUwYiIgdHJhbnNmb3JtPSJyb3RhdGUoLTQwIDI0IDQwKSIvPgogIDxwb2x5Z29uIHBvaW50cz0iMzIsMTQgMzgsMjIgMjYsMjIiIGZpbGw9IiNmYmJmMjQiLz4KICA8cmVjdCB4PSIzNiIgeT0iMTAiIHdpZHRoPSI1IiBoZWlnaHQ9IjUiIHJ4PSIxIiBmaWxsPSIjMzRkMzk5IiB0cmFuc2Zvcm09InJvdGF0ZSgyMCAzOCAxMikiLz4KICA8cmVjdCB4PSI0NiIgeT0iMTgiIHdpZHRoPSI0IiBoZWlnaHQ9IjQiIHJ4PSIxIiBmaWxsPSIjZjg3MTcxIiB0cmFuc2Zvcm09InJvdGF0ZSgtMTUgNDggMjApIi8+CiAgPHJlY3QgeD0iNDIiIHk9IjgiIHdpZHRoPSIzIiBoZWlnaHQ9IjYiIHJ4PSIxIiBmaWxsPSIjNjBhNWZhIiB0cmFuc2Zvcm09InJvdGF0ZSgzNSA0MyAxMSkiLz4KICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjEyIiByPSIzIiBmaWxsPSIjZmJiZjI0Ii8+CiAgPGNpcmNsZSBjeD0iMzgiIGN5PSIyNCIgcj0iMiIgZmlsbD0iI2Y0NzJiNiIvPgogIDx0ZXh0IHg9IjQ4IiB5PSIzNiIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2ZmZiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKcpjwvdGV4dD4KICA8dGV4dCB4PSIzMCIgeT0iNTIiIGZvbnQtc2l6ZT0iOSIgZmlsbD0iI2ZkZTY4YSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKcpjwvdGV4dD4KPC9zdmc+Cg==" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Particles Background -->
+  <div id="particles-container"></div>
+
+  <!-- Floating Balloons -->
+  <div class="balloons-container" id="balloons"></div>
+
+  <!-- Confetti Container -->
+  <div id="confetti-container"></div>
+
+  <!-- DJ Lights -->
+  <div class="dj-lights">
+    <div class="light light-1"></div>
+    <div class="light light-2"></div>
+    <div class="light light-3"></div>
+    <div class="light light-4"></div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">🎉 EXIT PARTY</div>
+    <ul class="nav-links">
+      <li><a href="#event-info">Event</a></li>
+      <li><a href="#payment">Payment</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSc_az40GFG0ciIK3UXpOkL35g_puksdiQLLsupW6vhp5PCaYw/viewform?usp=sharing" target="_blank">Register</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="nav-cta" onclick="openRegisterForm()">Get Ticket</button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" onclick="toggleMobileNav()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobile-drawer">
+    <a href="#event-info" onclick="closeMobileNav()">Event</a>
+    <a href="#payment" onclick="closeMobileNav()">Payment</a>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_az40GFG0ciIK3UXpOkL35g_puksdiQLLsupW6vhp5PCaYw/viewform?usp=sharing" target="_blank" onclick="closeMobileNav()">Register</a>
+    <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+    <button class="mobile-nav-cta" onclick="closeMobileNav(); openRegisterForm()">Get Ticket 🎟️</button>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <div class="hero-badge reveal">🔥 Limited Seats Available</div>
+      <h1 class="hero-title reveal">
+        <span class="neon-text">Bangalore</span><br />
+        <span class="gradient-text">Exit Party</span><br />
+        <span class="year-text">2026</span>
+      </h1>
+      <p class="hero-sub reveal">One Last Night. Unlimited Memories.</p>
+      <div class="hero-meta reveal">
+        <span class="meta-pill">📅 <span id="event-date">Loading...</span></span>
+        <span class="meta-pill">📍 Bangalore</span>
+        <span class="meta-pill">🎟️ ₹25 Entry</span>
+      </div>
+      <button class="cta-btn reveal" onclick="openRegisterForm()">
+        <span>Register Now</span>
+        <div class="btn-glow"></div>
+      </button>
+      <div class="countdown-wrapper reveal">
+        <p class="countdown-label">Party Starts In</p>
+        <div class="countdown" id="countdown">
+          <div class="cd-block"><span id="cd-hours">00</span><small>Hours</small></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span id="cd-mins">00</span><small>Mins</small></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span id="cd-secs">00</span><small>Secs</small></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="vinyl-disc">
+        <div class="vinyl-inner"></div>
+        <div class="vinyl-center"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENT INFO -->
+  <section class="section" id="event-info">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">The Night</span>
+        <h2>Event Details</h2>
+      </div>
+      <div class="info-grid">
+        <div class="info-card glass reveal">
+          <div class="info-icon">📅</div>
+          <h3>Date</h3>
+          <p id="info-date">Tomorrow</p>
+        </div>
+        <div class="info-card glass reveal">
+          <div class="info-icon">⏰</div>
+          <h3>Time</h3>
+          <p>7:00 PM – 2:00 AM</p>
+        </div>
+        <div class="info-card glass reveal">
+          <div class="info-icon">📍</div>
+          <h3>Venue</h3>
+          <p>Koramangala Social<br/>Bangalore, KA 560034</p>
+        </div>
+        <div class="info-card glass reveal">
+          <div class="info-icon">🎟️</div>
+          <h3>Entry Fee</h3>
+          <p>₹25 Only<br/><small>Min. ₹25 required</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY JOIN -->
+  <section class="section section-dark" id="why">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Why You Can't Miss This</span>
+        <h2>What's In Store</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card reveal">
+          <div class="feature-num">01</div>
+          <div class="feature-icon">🎵</div>
+          <h3>Live DJ Sets</h3>
+          <p>Bangalore's hottest DJs spinning all night — EDM, Bollywood, Hip-Hop and everything in between.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">02</div>
+          <div class="feature-icon">🍹</div>
+          <h3>Food & Drinks</h3>
+          <p>Curated menu of cocktails, mocktails, street bites, and gourmet snacks. Something for every palate.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">03</div>
+          <div class="feature-icon">💃</div>
+          <h3>Dance Floor</h3>
+          <p>Massive open dance floor with laser lights, fog machines, and visuals that hit different.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">04</div>
+          <div class="feature-icon">📸</div>
+          <h3>Photo Booths</h3>
+          <p>Themed photo zones to capture every moment. Memories you'll actually want to remember.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">05</div>
+          <div class="feature-icon">🏆</div>
+          <h3>Dance Contest</h3>
+          <p>Show off your moves in our midnight dance battle. Winner takes home a special prize.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-num">06</div>
+          <div class="feature-icon">🎁</div>
+          <h3>Surprise Acts</h3>
+          <p>We've planned something special. Can't spoil it — you'll just have to show up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENT -->
+  <section class="section" id="payment">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Step 1</span>
+        <h2>Make Your Payment</h2>
+      </div>
+      <div class="payment-wrapper">
+        <div class="payment-card glass reveal">
+          <div class="fee-badge">
+            <span class="fee-amount">₹25</span>
+            <span class="fee-label">Entry Fee</span>
+          </div>
+          <div class="notice-box">
+            ⚠️ Minimum payment is <strong>₹25</strong>. Registrations below ₹25 are not valid and will be rejected.
+          </div>
+          <div class="qr-section">
+            <div class="qr-placeholder">
+              <img
+                src="https://res.cloudinary.com/dd0bw31fi/image/upload/v1781258351/QR_mjnugx.png"
+                alt="UPI QR Code"
+                class="upi-qr"
+              />
+              <p class="qr-label">Scan to Pay via UPI</p>
+            </div>
+            <div class="upi-section">
+              <p class="upi-label">Or pay using UPI ID</p>
+              <div class="upi-box">
+                <span id="upi-id">adarshdev85219@oksbi</span>
+                <button class="copy-btn" onclick="copyUPI()">
+                  <span id="copy-text">Copy</span>
+                </button>
+              </div>
+              <div class="pay-steps">
+                <p class="steps-title">How to Pay</p>
+                <ol>
+                  <li>Open any UPI app (GPay, PhonePe, Paytm)</li>
+                  <li>Scan QR code or enter UPI ID</li>
+                  <li>Pay minimum <strong>₹25</strong></li>
+                  <li>Save your payment screenshot</li>
+                  <li>Fill out the registration form below</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORM -->
+  <section class="section" id="register">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Step 2</span>
+        <h2>Complete Registration</h2>
+      </div>
+      <div class="form-card glass reveal">
+        <div class="form-intro" style="text-align:center;">
+          <h3>Complete Your Registration 🎉</h3>
+          <p>
+            After paying ₹25 and saving your payment screenshot,
+            click the button below and complete the registration form.
+          </p>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLSc_az40GFG0ciIK3UXpOkL35g_puksdiQLLsupW6vhp5PCaYw/viewform?usp=sharing"
+            target="_blank"
+            class="party-form-btn"
+          >
+            🚀 Open Registration Form
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTY RULES -->
+  <section class="section" id="rules">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">House Rules</span>
+        <h2>Party Rules</h2>
+      </div>
+      <div class="rules-grid">
+        <div class="rule-item reveal"><span class="rule-icon">✅</span><p>Valid registration required at entry</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">✅</span><p>Dress smart — no formals, no flip-flops</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">✅</span><p>Respect fellow partygoers at all times</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">✅</span><p>Age 18+ only. Valid ID required</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">❌</span><p>No outside food or beverages</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">❌</span><p>No re-entry after 10:00 PM</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">❌</span><p>No professional cameras or recording</p></div>
+        <div class="rule-item reveal"><span class="rule-icon">❌</span><p>Dress code violations = denied entry</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section-dark" id="faq">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Got Questions?</span>
+        <h2>FAQ</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q"><span>Is ₹25 really all I need to pay?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">Yes! ₹25 is the minimum entry fee. You're welcome to pay more as a token of appreciation, but ₹25 gets you through the door.</div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q"><span>When will my registration be confirmed?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">After submitting, our team will verify your payment within 24 hours. You'll receive a confirmation on the email you provided.</div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q"><span>Can I bring friends who haven't registered?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">No. Each person must register individually. Entry without a valid registration confirmation will be denied.</div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q"><span>What if my payment fails or I pay wrong amount?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">Contact us via the email in the contact section below with your transaction details. We'll sort it out before the event.</div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q"><span>Is parking available at the venue?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">Limited parking is available. We strongly recommend taking a cab or using public transport given the late-night timings.</div>
+        </div>
+        <div class="faq-item reveal" onclick="toggleFaq(this)">
+          <div class="faq-q"><span>Are refunds available?</span><span class="faq-arrow">▼</span></div>
+          <div class="faq-a">Entry fees are non-refundable. However, in case the event is cancelled, a full refund will be processed within 5-7 business days.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Contact Us</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card glass reveal">
+          <div class="contact-icon">📧</div>
+          <h3>Email</h3>
+          <a href="mailto:sunnydev85219@gmail.com">sunnydev85219@gmail.com</a>
+        </div>
+        <div class="contact-card glass reveal">
+          <div class="contact-icon">📱</div>
+          <h3>WhatsApp</h3>
+          <a href="https://wa.me/918521976815">+91 85219 76815</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">🎉 EXIT PARTY 2026</div>
+      <p class="footer-tagline">See You At The Party 🎉</p>
+      <p class="footer-copy">© 2026 Bangalore Exit Party. All rights reserved.</p>
+    </div>
+    <div class="footer-glow"></div>
+  </footer>
+
+  <!-- SUCCESS POPUP -->
+  <div class="popup-overlay" id="success-popup">
+    <div class="popup-card glass">
+      <div class="popup-confetti" id="popup-confetti"></div>
+      <div class="popup-icon">🎊</div>
+      <h2>You're In!</h2>
+      <p class="popup-main">Registration Submitted Successfully</p>
+      <p class="popup-sub">Payment Verification Pending. Our team will confirm within 24 hours.</p>
+      <div class="popup-meta">
+        <span>📧 Check your email for updates</span>
+      </div>
+      <button class="popup-close" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+  <script>
+    /* ── Register / Get Ticket redirect ── */
+    function openRegisterForm() {
+      window.open(
+        "https://docs.google.com/forms/d/e/1FAIpQLSc_az40GFG0ciIK3UXpOkL35g_puksdiQLLsupW6vhp5PCaYw/viewform?usp=sharing",
+        "_blank"
+      );
+    }
+
+    /* Keep scrollToRegister as an alias in case script.js still calls it */
+    function scrollToRegister() {
+      openRegisterForm();
+    }
+  </script>
+
+</body>
+</html>
