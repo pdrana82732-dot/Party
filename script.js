@@ -4,26 +4,15 @@
 =========================== */
 
 // ===========================
-// DATE & COUNTDOWN
+// COUNTDOWN TO TONIGHT 12:00 AM (MIDNIGHT)
 // ===========================
-function getTomorrowDate() {
-  const d = new Date();
-  d.setDate(d.getDate() + 1);
-  d.setHours(19, 0, 0, 0); // 7:00 PM tomorrow
-  return d;
-}
-
-function formatDate(d) {
-  return d.toLocaleDateString('en-IN', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+function getMidnightDate() {
+  // Tonight 13 June 2026, 12:00 AM (midnight = end of day)
+  return new Date('2026-06-13T23:59:59+05:30');
 }
 
 function updateCountdown() {
-  const target = getTomorrowDate();
+  const target = getMidnightDate();
   const now = new Date();
   const diff = target - now;
 
@@ -34,24 +23,17 @@ function updateCountdown() {
     return;
   }
 
-  const hours = Math.floor(diff / (1000 * 60 * 60));
-  const mins  = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-  const secs  = Math.floor((diff % (1000 * 60)) / 1000);
+  const totalHours = Math.floor(diff / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
   const pad = (n) => String(n).padStart(2, '0');
-  document.getElementById('cd-hours').textContent = pad(hours);
+  document.getElementById('cd-hours').textContent = pad(totalHours);
   document.getElementById('cd-mins').textContent  = pad(mins);
   document.getElementById('cd-secs').textContent  = pad(secs);
 }
 
 function initDateAndCountdown() {
-  const tomorrow = getTomorrowDate();
-  const formatted = formatDate(tomorrow);
-  const el1 = document.getElementById('event-date');
-  const el2 = document.getElementById('info-date');
-  if (el1) el1.textContent = formatted;
-  if (el2) el2.textContent = formatted;
-
   updateCountdown();
   setInterval(updateCountdown, 1000);
 }
@@ -161,7 +143,7 @@ function createBalloons() {
 // ===========================
 // CONFETTI BURST
 // ===========================
-function launchConfetti(targetEl) {
+function launchConfetti() {
   const container = document.getElementById('confetti-container');
   const colors = ['#a855f7', '#ec4899', '#22d3ee', '#fbbf24', '#f472b6', '#ffffff', '#4ade80'];
   const count = 120;
@@ -222,146 +204,6 @@ function copyUPI() {
 }
 
 // ===========================
-// FILE UPLOAD HANDLER
-// ===========================
-function handleFileUpload(input) {
-  const zone = document.getElementById('upload-zone');
-  const label = document.getElementById('upload-label');
-
-  if (input.files && input.files[0]) {
-    const file = input.files[0];
-    const maxSize = 5 * 1024 * 1024; // 5MB
-
-    if (file.size > maxSize) {
-      document.getElementById('err-screenshot').textContent = 'File too large. Max 5MB.';
-      input.value = '';
-      zone.classList.remove('uploaded');
-      label.textContent = 'Click to upload your payment screenshot';
-      return;
-    }
-
-    zone.classList.add('uploaded');
-    label.innerHTML = `✅ ${file.name}`;
-    document.getElementById('err-screenshot').textContent = '';
-  }
-}
-
-// ===========================
-// FORM VALIDATION
-// ===========================
-function validateForm() {
-  let valid = true;
-
-  const clear = (id) => (document.getElementById(id).textContent = '');
-  const setErr = (fieldId, errId, msg) => {
-    const field = document.getElementById(fieldId);
-    document.getElementById(errId).textContent = msg;
-    field.classList.add('invalid');
-    valid = false;
-  };
-  const setOk = (fieldId) => {
-    document.getElementById(fieldId).classList.remove('invalid');
-  };
-
-  // Clear all errors
-  ['err-name','err-email','err-mobile','err-address','err-amount','err-txn','err-screenshot']
-    .forEach(clear);
-
-  // Name
-  const name = document.getElementById('fullname').value.trim();
-  if (!name || name.length < 2) {
-    setErr('fullname', 'err-name', 'Please enter your full name.');
-  } else { setOk('fullname'); }
-
-  // Email
-  const email = document.getElementById('email').value.trim();
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!email || !emailRegex.test(email)) {
-    setErr('email', 'err-email', 'Please enter a valid email address.');
-  } else { setOk('email'); }
-
-  // Mobile
-  const mobile = document.getElementById('mobile').value.trim().replace(/\s+/g, '');
-  const mobileRegex = /^(\+91)?[6-9]\d{9}$/;
-  if (!mobileRegex.test(mobile)) {
-    setErr('mobile', 'err-mobile', 'Enter a valid 10-digit Indian mobile number.');
-  } else { setOk('mobile'); }
-
-  // Address
-  const address = document.getElementById('address').value.trim();
-  if (!address || address.length < 3) {
-    setErr('address', 'err-address', 'Please enter your address or area.');
-  } else { setOk('address'); }
-
-  // Amount
-  const amount = parseFloat(document.getElementById('amount').value);
-  if (isNaN(amount) || amount < 25) {
-    setErr('amount', 'err-amount', 'Minimum amount is ₹25. Please enter a valid amount.');
-  } else { setOk('amount'); }
-
-  // Transaction ID
-  const txn = document.getElementById('txn').value.trim();
-  if (!txn || txn.length < 6) {
-    setErr('txn', 'err-txn', 'Enter a valid UPI transaction ID.');
-  } else { setOk('txn'); }
-
-  // Screenshot
-  const screenshot = document.getElementById('screenshot');
-  if (!screenshot.files || !screenshot.files[0]) {
-    document.getElementById('err-screenshot').textContent = 'Please upload your payment screenshot.';
-    valid = false;
-  }
-
-  return valid;
-}
-
-// ===========================
-// SUBMIT FORM
-// ===========================
-function submitForm() {
-  if (!validateForm()) {
-    // Scroll to first error
-    const firstErr = document.querySelector('.err:not(:empty)');
-    if (firstErr) {
-      firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    return;
-  }
-
-  // Show loading state
-  const btn = document.querySelector('.submit-btn');
-  const originalText = btn.innerHTML;
-  btn.innerHTML = '<span>Submitting...</span><div class="btn-glow"></div>';
-  btn.disabled = true;
-  btn.style.opacity = '0.7';
-
-  setTimeout(() => {
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    showSuccessPopup();
-    launchConfetti();
-    resetForm();
-  }, 1800);
-}
-
-// ===========================
-// RESET FORM
-// ===========================
-function resetForm() {
-  ['fullname','email','mobile','address','amount','txn'].forEach((id) => {
-    const el = document.getElementById(id);
-    el.value = '';
-    el.classList.remove('invalid');
-  });
-  document.getElementById('screenshot').value = '';
-  document.getElementById('upload-zone').classList.remove('uploaded');
-  document.getElementById('upload-label').textContent = 'Click to upload your payment screenshot';
-  ['err-name','err-email','err-mobile','err-address','err-amount','err-txn','err-screenshot']
-    .forEach((id) => (document.getElementById(id).textContent = ''));
-}
-
-// ===========================
 // POPUP
 // ===========================
 function showSuccessPopup() {
@@ -369,7 +211,6 @@ function showSuccessPopup() {
   popup.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Mini confetti inside popup
   const inner = document.getElementById('popup-confetti');
   inner.innerHTML = '';
   const colors = ['#a855f7','#ec4899','#22d3ee','#fbbf24'];
@@ -398,15 +239,11 @@ function closePopup() {
   document.body.style.overflow = '';
 }
 
-// Close popup on overlay click
 document.addEventListener('click', (e) => {
   const popup = document.getElementById('success-popup');
-  if (e.target === popup) {
-    closePopup();
-  }
+  if (e.target === popup) closePopup();
 });
 
-// Escape key closes popup
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closePopup();
 });
@@ -422,84 +259,6 @@ function toggleFaq(el) {
   if (!isOpen) {
     el.classList.add('open');
   }
-}
-
-// ===========================
-// SMOOTH SCROLL TO REGISTER
-// ===========================
-function scrollToRegister() {
-  const target = document.getElementById('register');
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-// ===========================
-// DRAG & DROP ON UPLOAD ZONE
-// ===========================
-function initDragDrop() {
-  const zone = document.getElementById('upload-zone');
-  if (!zone) return;
-
-  ['dragenter', 'dragover'].forEach((ev) => {
-    zone.addEventListener(ev, (e) => {
-      e.preventDefault();
-      zone.style.borderColor = 'var(--purple)';
-      zone.style.background = 'rgba(168, 85, 247, 0.12)';
-    });
-  });
-
-  ['dragleave', 'drop'].forEach((ev) => {
-    zone.addEventListener(ev, (e) => {
-      e.preventDefault();
-      zone.style.borderColor = '';
-      zone.style.background = '';
-    });
-  });
-
-  zone.addEventListener('drop', (e) => {
-    e.preventDefault();
-    const files = e.dataTransfer.files;
-    if (files.length > 0) {
-      const input = document.getElementById('screenshot');
-      const dt = new DataTransfer();
-      dt.items.add(files[0]);
-      input.files = dt.files;
-      handleFileUpload(input);
-    }
-  });
-}
-
-// ===========================
-// SPARKLE ON HOVER (Glow)
-// ===========================
-function initHoverSparkles() {
-  const buttons = document.querySelectorAll('.cta-btn, .submit-btn, .copy-btn, .nav-cta');
-  buttons.forEach((btn) => {
-    btn.addEventListener('mouseenter', () => {
-      btn.style.filter = 'brightness(1.1)';
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.filter = '';
-    });
-  });
-}
-
-// ===========================
-// ANIMATED COUNTER
-// ===========================
-function animateCounter(el, end, duration = 2000) {
-  let start = 0;
-  const step = end / (duration / 16);
-  const timer = setInterval(() => {
-    start += step;
-    if (start >= end) {
-      el.textContent = end;
-      clearInterval(timer);
-    } else {
-      el.textContent = Math.floor(start);
-    }
-  }, 16);
 }
 
 // ===========================
@@ -527,9 +286,19 @@ function closeMobileNav() {
 }
 
 function initMobileNav() {
-  // Close drawer on resize to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth > 768) closeMobileNav();
+  });
+}
+
+// ===========================
+// HOVER SPARKLES
+// ===========================
+function initHoverSparkles() {
+  const buttons = document.querySelectorAll('.cta-btn, .submit-btn, .copy-btn, .nav-cta');
+  buttons.forEach((btn) => {
+    btn.addEventListener('mouseenter', () => { btn.style.filter = 'brightness(1.1)'; });
+    btn.addEventListener('mouseleave', () => { btn.style.filter = ''; });
   });
 }
 
@@ -537,7 +306,7 @@ function initMobileNav() {
 // GLOW CURSOR TRAIL
 // ===========================
 function initCursorTrail() {
-  if (window.matchMedia('(pointer: coarse)').matches) return; // skip on touch
+  if (window.matchMedia('(pointer: coarse)').matches) return;
   document.addEventListener('mousemove', (e) => {
     const trail = document.createElement('div');
     trail.style.cssText = `
@@ -562,7 +331,7 @@ function initCursorTrail() {
 }
 
 // ===========================
-// SMOOTH ACTIVE NAV LINKS
+// ACTIVE NAV LINKS
 // ===========================
 function initActiveSections() {
   const sections = document.querySelectorAll('section[id]');
@@ -596,13 +365,11 @@ document.addEventListener('DOMContentLoaded', () => {
   createParticles();
   createBalloons();
   initScrollReveal();
-  initDragDrop();
   initHoverSparkles();
   initMobileNav();
   initCursorTrail();
   initActiveSections();
 
-  // Trigger reveal for hero items on load
   setTimeout(() => {
     document.querySelectorAll('.hero .reveal').forEach((el, i) => {
       setTimeout(() => el.classList.add('visible'), i * 120);
